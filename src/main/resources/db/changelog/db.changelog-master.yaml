@@ -14,8 +14,14 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: name
+                  name: full_name
                   type: VARCHAR(255)
               - column:
                   name: email
                   type: VARCHAR(255)
+              - column:
+                  name: skill
+                  type: VARCHAR(255)
+              - column:
+                  name: hourly_rate
+                  type: DOUBLE
