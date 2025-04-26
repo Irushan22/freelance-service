@@ -7,4 +7,5 @@ import java.util.List;
 public interface FreelancerService {
     List<FreelancerDTO> getAllFreelancers();
     FreelancerDTO createFreelancer(FreelancerDTO dto);
+    FreelancerDTO updateFreelancer(FreelancerDTO dto);
 }

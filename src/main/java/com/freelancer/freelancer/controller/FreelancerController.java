@@ -26,4 +26,9 @@ public class FreelancerController {
     public ResponseEntity<FreelancerDTO> create(@RequestBody FreelancerDTO dto){
         return ResponseEntity.ok(service.createFreelancer(dto));
     }
+
+    @PatchMapping
+    public ResponseEntity<FreelancerDTO> update(@RequestBody FreelancerDTO dto){
+        return ResponseEntity.ok(service.updateFreelancer(dto));
+    }
 }

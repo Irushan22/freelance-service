@@ -31,4 +31,11 @@ public class FreelanceServiceImpl implements FreelancerService {
         Freelancer saved = repository.save(entity);
         return FreelancerMapper.toDto(saved);
     }
+
+    @Override
+    public FreelancerDTO updateFreelancer(FreelancerDTO dto) {
+        Freelancer entity = FreelancerMapper.toEntity(dto);
+        Freelancer updated = repository.save(entity);
+        return FreelancerMapper.toDto(updated);
+    }
 }
