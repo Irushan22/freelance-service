@@ -8,4 +8,5 @@ public interface FreelancerService {
     List<FreelancerDTO> getAllFreelancers();
     FreelancerDTO createFreelancer(FreelancerDTO dto);
     FreelancerDTO updateFreelancer(FreelancerDTO dto);
+    FreelancerDTO findByFreelancerId(FreelancerDTO dto);
 }
