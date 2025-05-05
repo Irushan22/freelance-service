@@ -5,7 +5,9 @@ import com.freelancer.freelancer.entity.Freelancer;
 import com.freelancer.freelancer.mapper.FreelancerMapper;
 import com.freelancer.freelancer.repository.FreelancerRepository;
 import com.freelancer.freelancer.service.FreelancerService;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -33,15 +35,24 @@ public class FreelanceServiceImpl implements FreelancerService {
     }
 
     @Override
-    public FreelancerDTO updateFreelancer(FreelancerDTO dto) {
-        Freelancer entity = FreelancerMapper.toEntity(dto);
-        Freelancer updated = repository.save(entity);
+    public FreelancerDTO updateFreelancer(Long id, FreelancerDTO dto) {
+        Freelancer existing = repository.findById(id).
+                orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Freelancer not found with id:" +id));
+
+        existing.setFullName(dto.fullName());
+        existing.setEmail(dto.email());
+        existing.setSkill(dto.skill());
+        existing.setHourlyRate(dto.hourlyRate());
+
+        Freelancer updated = repository.save(existing);
         return FreelancerMapper.toDto(updated);
     }
 
     @Override
-    public FreelancerDTO findByFreelancerId(FreelancerDTO dto) {
-        return null;
+    public FreelancerDTO findByFreelancerId(Long id) {
+        Freelancer freelancer = repository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Freelancer not found with id: "+id));
+        return FreelancerMapper.toDto(freelancer);
     }
 
 

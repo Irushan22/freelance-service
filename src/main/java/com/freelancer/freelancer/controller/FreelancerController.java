@@ -27,8 +27,13 @@ public class FreelancerController {
         return ResponseEntity.ok(service.createFreelancer(dto));
     }
 
-    @PatchMapping
-    public ResponseEntity<FreelancerDTO> update(@RequestBody FreelancerDTO dto){
-        return ResponseEntity.ok(service.updateFreelancer(dto));
+    @PutMapping("/{id}")
+    public ResponseEntity<FreelancerDTO> update(@PathVariable Long id, @RequestBody FreelancerDTO dto){
+        return ResponseEntity.ok(service.updateFreelancer(id,dto));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<FreelancerDTO> getById(@PathVariable Long id){
+        return ResponseEntity.ok(service.findByFreelancerId(id));
     }
 }
